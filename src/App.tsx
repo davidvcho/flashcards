@@ -2,10 +2,18 @@ import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from "react-router-dom";
 import { Home } from "pages/home";
 import { GoogleSheetsContextProvider } from "common/google-sheets";
 import { Flashcards } from "pages/flashcards";
+
+export const BASE_PATH =
+  window.location.host === "localhost:3000" ? "/" : "/flashcards";
 
 export const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)") || true;
@@ -56,8 +64,18 @@ export const App = () => {
       <Router>
         <GoogleSheetsContextProvider>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/:id" children={<Flashcards />} />
+            <Route exact path={BASE_PATH} component={Home} />
+            <Route
+              path={`${
+                BASE_PATH.endsWith("/")
+                  ? BASE_PATH.substring(0, BASE_PATH.length - 1)
+                  : BASE_PATH
+              }/:id`}
+              children={<Flashcards />}
+            />
+            <Route>
+              <Redirect to={BASE_PATH} />
+            </Route>
           </Switch>
         </GoogleSheetsContextProvider>
       </Router>

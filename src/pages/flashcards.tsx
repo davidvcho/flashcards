@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FlipCameraAndroidIcon from "@material-ui/icons/FlipCameraAndroid";
+import { BASE_PATH } from "App";
 
 const FlashCardsInternal = ({ elements }: { elements: any }): JSX.Element => {
   const [index, setIndex] = useState(0);
@@ -106,7 +107,7 @@ export const Flashcards = (): JSX.Element => {
   const { data } = useGoogleSheetsContext();
 
   if (!data[id]) {
-    return <Redirect to="/" />;
+    return <Redirect to={BASE_PATH} />;
   }
 
   return <FlashCardsInternal elements={shuffle(data[id].elements)} />;

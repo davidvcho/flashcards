@@ -1,0 +1,23 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+}
+
+.body {
+  margin: 72px 0;
+  padding: 0 16px;
+
+  @media (min-width: 600px) {
+    margin: 88px 0;
+    padding: 0 24px;
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}

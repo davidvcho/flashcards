@@ -22,13 +22,15 @@ export const Home = (): JSX.Element => {
 
   return (
     <PageLayout>
-      {Object.keys(data).map(name => (
-        <Link key={name} to={buildPath(`/${name}`)}>
-          <Card className={classes.card}>
-            <h1 className={classes.title}>{name}</h1>
-          </Card>
-        </Link>
-      ))}
+      {Object.keys(data)
+        .sort()
+        .map(name => (
+          <Link key={name} to={buildPath(`/${name}`)}>
+            <Card className={classes.card}>
+              <h1 className={classes.title}>{name}</h1>
+            </Card>
+          </Link>
+        ))}
     </PageLayout>
   );
 };

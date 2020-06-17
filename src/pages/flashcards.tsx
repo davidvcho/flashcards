@@ -18,7 +18,14 @@ const FlashCardsInternal = ({ elements }: { elements: any }): JSX.Element => {
     <>
       <PageLayout>
         <div
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            position: "fixed",
+            top: "40%",
+            left: "50%",
+            transform: "translate(-50%, -40%)",
+            width: "100%"
+          }}
           onClick={() => setShowValue(!showValue)}
         >
           <Card>

@@ -16,11 +16,7 @@ export const BASE_PATH =
   window.location.host === "localhost:3000" ? "/" : "/flashcards";
 
 export const buildPath = (path: string): string => {
-  return `${
-    BASE_PATH.endsWith("/")
-      ? BASE_PATH.substring(0, BASE_PATH.length - 1)
-      : BASE_PATH
-  }${path}}`;
+  return BASE_PATH === "/" ? path : `${BASE_PATH}${path}`;
 };
 
 export const App = () => {

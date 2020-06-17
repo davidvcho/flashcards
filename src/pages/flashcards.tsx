@@ -14,6 +14,11 @@ const FlashCardsInternal = ({ elements }: { elements: any }): JSX.Element => {
   const [showValue, setShowValue] = useState(false);
 
   const element = elements[index];
+  const len = element.key.length;
+  const parts = element.value.split(" ");
+  const pinying = parts.slice(0, len).join(" ");
+  const english = parts.slice(len).join(" ");
+
   return (
     <>
       <PageLayout>
@@ -35,7 +40,15 @@ const FlashCardsInternal = ({ elements }: { elements: any }): JSX.Element => {
                 fontWeight: "normal"
               }}
             >
-              {showValue ? element.value : element.key}
+              {showValue ? (
+                <span>
+                  {pinying}
+                  <br />
+                  {english}
+                </span>
+              ) : (
+                element.key
+              )}
             </h1>
           </Card>
         </div>

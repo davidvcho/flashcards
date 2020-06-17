@@ -24,6 +24,7 @@ const FlashCardsInternal = ({ elements }: { elements: any }): JSX.Element => {
             top: "40%",
             left: "50%",
             transform: "translate(-50%, -40%)",
+            padding: "0 16px",
             width: "100%"
           }}
           onClick={() => setShowValue(!showValue)}

@@ -15,6 +15,14 @@ import { Flashcards } from "pages/flashcards";
 export const BASE_PATH =
   window.location.host === "localhost:3000" ? "/" : "/flashcards";
 
+export const buildPath = (path: string): string => {
+  return `${
+    BASE_PATH.endsWith("/")
+      ? BASE_PATH.substring(0, BASE_PATH.length - 1)
+      : BASE_PATH
+  }${path}}`;
+};
+
 export const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)") || true;
 
@@ -65,14 +73,7 @@ export const App = () => {
         <GoogleSheetsContextProvider>
           <Switch>
             <Route exact path={BASE_PATH} component={Home} />
-            <Route
-              path={`${
-                BASE_PATH.endsWith("/")
-                  ? BASE_PATH.substring(0, BASE_PATH.length - 1)
-                  : BASE_PATH
-              }/:id`}
-              children={<Flashcards />}
-            />
+            <Route path={buildPath("/:id")} children={<Flashcards />} />
             <Route>
               <Redirect to={BASE_PATH} />
             </Route>
